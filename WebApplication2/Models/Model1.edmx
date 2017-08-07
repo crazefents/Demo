@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SubsidiariesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Association">
+          <Key>
+            <PropertyRef Name="AssocID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssocID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AssocType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssPercent" Type="int" Nullable="false" />
+          <Property Name="DirectRel" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+          <Property Name="ChangeDate" Type="date" Nullable="false" />
+          <Property Name="NoShares_YN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssociationType">
+          <Key>
+            <PropertyRef Name="AssocType" />
+          </Key>
+          <Property Name="AssocType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="225" />
+          <Property Name="UpdateDate" Type="date" />
+        </EntityType>
+        <EntityType Name="CompanyName">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExchangeCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyName" Type="nchar" MaxLength="225" Nullable="false" />
+          <Property Name="ShortCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CorpInfo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CountryID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="BusinessSectorID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyTypeID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyType">
+          <Key>
+            <PropertyRef Name="CompanyTypeID" />
+          </Key>
+          <Property Name="CompanyTypeID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyTypeDesc" Type="varchar" MaxLength="20" />
+          <Property Name="UpdateDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Exchange">
+          <Key>
+            <PropertyRef Name="ExchangeCode" />
+          </Key>
+          <Property Name="ExchangeCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ExchangeName" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Investment">
+          <Key>
+            <PropertyRef Name="InvestID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvestID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InvestType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InvPercent" Type="int" Nullable="false" />
+          <Property Name="DirectRel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+          <Property Name="ChangeDate" Type="date" Nullable="false" />
+          <Property Name="NoShares_YN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvestmentType">
+          <Key>
+            <PropertyRef Name="InvestType" />
+          </Key>
+          <Property Name="InvestType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="225" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subsidiaries">
+          <Key>
+            <PropertyRef Name="SubsiID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubsiID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SubType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SubPercent" Type="int" Nullable="false" />
+          <Property Name="DirectRel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+          <Property Name="ChangeDate" Type="date" Nullable="false" />
+          <Property Name="NoShares_YN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubsidiariesType">
+          <Key>
+            <PropertyRef Name="SubType" />
+          </Key>
+          <Property Name="SubType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="225" Nullable="false" />
+          <Property Name="UpdateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_AssociationType">
+          <End Role="AssociationType" Type="Self.AssociationType" Multiplicity="1" />
+          <End Role="Association" Type="Self.Association" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssociationType">
+              <PropertyRef Name="AssocType" />
+            </Principal>
+            <Dependent Role="Association">
+              <PropertyRef Name="AssocType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyName_CompanyName">
+          <End Role="Exchange" Type="Self.Exchange" Multiplicity="1" />
+          <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exchange">
+              <PropertyRef Name="ExchangeCode" />
+            </Principal>
+            <Dependent Role="CompanyName">
+              <PropertyRef Name="ExchangeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyName_CompanyName1">
+          <End Role="CompanyType" Type="Self.CompanyType" Multiplicity="1" />
+          <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyType">
+              <PropertyRef Name="CompanyTypeID" />
+            </Principal>
+            <Dependent Role="CompanyName">
+              <PropertyRef Name="CompanyTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Investment_InvestmentType">
+          <End Role="InvestmentType" Type="Self.InvestmentType" Multiplicity="1" />
+          <End Role="Investment" Type="Self.Investment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvestmentType">
+              <PropertyRef Name="InvestType" />
+            </Principal>
+            <Dependent Role="Investment">
+              <PropertyRef Name="InvestType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsidiaries_SubsidiariesType">
+          <End Role="SubsidiariesType" Type="Self.SubsidiariesType" Multiplicity="1" />
+          <End Role="Subsidiaries" Type="Self.Subsidiaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubsidiariesType">
+              <PropertyRef Name="SubType" />
+            </Principal>
+            <Dependent Role="Subsidiaries">
+              <PropertyRef Name="SubType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SubsidiariesModelStoreContainer">
+          <EntitySet Name="Association" EntityType="Self.Association" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociationType" EntityType="Self.AssociationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyName" EntityType="Self.CompanyName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyType" EntityType="Self.CompanyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exchange" EntityType="Self.Exchange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Investment" EntityType="Self.Investment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvestmentType" EntityType="Self.InvestmentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subsidiaries" EntityType="Self.Subsidiaries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubsidiariesType" EntityType="Self.SubsidiariesType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AssociationType" Association="Self.FK_AssociationType">
+            <End Role="AssociationType" EntitySet="AssociationType" />
+            <End Role="Association" EntitySet="Association" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyName_CompanyName" Association="Self.FK_CompanyName_CompanyName">
+            <End Role="Exchange" EntitySet="Exchange" />
+            <End Role="CompanyName" EntitySet="CompanyName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyName_CompanyName1" Association="Self.FK_CompanyName_CompanyName1">
+            <End Role="CompanyType" EntitySet="CompanyType" />
+            <End Role="CompanyName" EntitySet="CompanyName" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Investment_InvestmentType" Association="Self.FK_Investment_InvestmentType">
+            <End Role="InvestmentType" EntitySet="InvestmentType" />
+            <End Role="Investment" EntitySet="Investment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsidiaries_SubsidiariesType" Association="Self.FK_Subsidiaries_SubsidiariesType">
+            <End Role="SubsidiariesType" EntitySet="SubsidiariesType" />
+            <End Role="Subsidiaries" EntitySet="Subsidiaries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SubsidiariesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Association">
+          <Key>
+            <PropertyRef Name="AssocID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssocID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AssocType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AssPercent" Type="Int32" Nullable="false" />
+          <Property Name="DirectRel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NoShares_YN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AssociationType" Relationship="Self.FK_AssociationType" FromRole="Association" ToRole="AssociationType" />
+        </EntityType>
+        <EntityType Name="AssociationType">
+          <Key>
+            <PropertyRef Name="AssocType" />
+          </Key>
+          <Property Name="AssocType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Associations" Relationship="Self.FK_AssociationType" FromRole="AssociationType" ToRole="Association" />
+        </EntityType>
+        <EntityType Name="CompanyName">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExchangeCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CompanyName1" Type="String" MaxLength="225" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ShortCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CorpInfo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CountryID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BusinessSectorID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CompanyTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Exchange" Relationship="Self.FK_CompanyName_CompanyName" FromRole="CompanyName" ToRole="Exchange" />
+          <NavigationProperty Name="CompanyType" Relationship="Self.FK_CompanyName_CompanyName1" FromRole="CompanyName" ToRole="CompanyType" />
+        </EntityType>
+        <EntityType Name="CompanyType">
+          <Key>
+            <PropertyRef Name="CompanyTypeID" />
+          </Key>
+          <Property Name="CompanyTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyTypeDesc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CompanyNames" Relationship="Self.FK_CompanyName_CompanyName1" FromRole="CompanyType" ToRole="CompanyName" />
+        </EntityType>
+        <EntityType Name="Exchange">
+          <Key>
+            <PropertyRef Name="ExchangeCode" />
+          </Key>
+          <Property Name="ExchangeCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ExchangeName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CountryID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CompanyNames" Relationship="Self.FK_CompanyName_CompanyName" FromRole="Exchange" ToRole="CompanyName" />
+        </EntityType>
+        <EntityType Name="Investment">
+          <Key>
+            <PropertyRef Name="InvestID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvestID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvestType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvPercent" Type="Int32" Nullable="false" />
+          <Property Name="DirectRel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NoShares_YN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InvestmentType" Relationship="Self.FK_Investment_InvestmentType" FromRole="Investment" ToRole="InvestmentType" />
+        </EntityType>
+        <EntityType Name="InvestmentType">
+          <Key>
+            <PropertyRef Name="InvestType" />
+          </Key>
+          <Property Name="InvestType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="225" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Investments" Relationship="Self.FK_Investment_InvestmentType" FromRole="InvestmentType" ToRole="Investment" />
+        </EntityType>
+        <EntityType Name="Subsidiary">
+          <Key>
+            <PropertyRef Name="SubsiID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubsiID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubPercent" Type="Int32" Nullable="false" />
+          <Property Name="DirectRel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NoShares_YN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubsidiariesType" Relationship="Self.FK_Subsidiaries_SubsidiariesType" FromRole="Subsidiaries" ToRole="SubsidiariesType" />
+        </EntityType>
+        <EntityType Name="SubsidiariesType">
+          <Key>
+            <PropertyRef Name="SubType" />
+          </Key>
+          <Property Name="SubType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="225" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Subsidiaries" Relationship="Self.FK_Subsidiaries_SubsidiariesType" FromRole="SubsidiariesType" ToRole="Subsidiaries" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_AssociationType">
+          <End Role="AssociationType" Type="Self.AssociationType" Multiplicity="1" />
+          <End Role="Association" Type="Self.Association" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssociationType">
+              <PropertyRef Name="AssocType" />
+            </Principal>
+            <Dependent Role="Association">
+              <PropertyRef Name="AssocType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyName_CompanyName">
+          <End Role="Exchange" Type="Self.Exchange" Multiplicity="1" />
+          <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exchange">
+              <PropertyRef Name="ExchangeCode" />
+            </Principal>
+            <Dependent Role="CompanyName">
+              <PropertyRef Name="ExchangeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyName_CompanyName1">
+          <End Role="CompanyType" Type="Self.CompanyType" Multiplicity="1" />
+          <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyType">
+              <PropertyRef Name="CompanyTypeID" />
+            </Principal>
+            <Dependent Role="CompanyName">
+              <PropertyRef Name="CompanyTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Investment_InvestmentType">
+          <End Role="InvestmentType" Type="Self.InvestmentType" Multiplicity="1" />
+          <End Role="Investment" Type="Self.Investment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InvestmentType">
+              <PropertyRef Name="InvestType" />
+            </Principal>
+            <Dependent Role="Investment">
+              <PropertyRef Name="InvestType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subsidiaries_SubsidiariesType">
+          <End Role="SubsidiariesType" Type="Self.SubsidiariesType" Multiplicity="1" />
+          <End Role="Subsidiaries" Type="Self.Subsidiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubsidiariesType">
+              <PropertyRef Name="SubType" />
+            </Principal>
+            <Dependent Role="Subsidiaries">
+              <PropertyRef Name="SubType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SubsidiariesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Associations" EntityType="Self.Association" />
+          <EntitySet Name="AssociationTypes" EntityType="Self.AssociationType" />
+          <EntitySet Name="CompanyNames" EntityType="Self.CompanyName" />
+          <EntitySet Name="CompanyTypes" EntityType="Self.CompanyType" />
+          <EntitySet Name="Exchanges" EntityType="Self.Exchange" />
+          <EntitySet Name="Investments" EntityType="Self.Investment" />
+          <EntitySet Name="InvestmentTypes" EntityType="Self.InvestmentType" />
+          <EntitySet Name="Subsidiaries" EntityType="Self.Subsidiary" />
+          <EntitySet Name="SubsidiariesTypes" EntityType="Self.SubsidiariesType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_AssociationType" Association="Self.FK_AssociationType">
+            <End Role="AssociationType" EntitySet="AssociationTypes" />
+            <End Role="Association" EntitySet="Associations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyName_CompanyName" Association="Self.FK_CompanyName_CompanyName">
+            <End Role="Exchange" EntitySet="Exchanges" />
+            <End Role="CompanyName" EntitySet="CompanyNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyName_CompanyName1" Association="Self.FK_CompanyName_CompanyName1">
+            <End Role="CompanyType" EntitySet="CompanyTypes" />
+            <End Role="CompanyName" EntitySet="CompanyNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Investment_InvestmentType" Association="Self.FK_Investment_InvestmentType">
+            <End Role="InvestmentType" EntitySet="InvestmentTypes" />
+            <End Role="Investment" EntitySet="Investments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subsidiaries_SubsidiariesType" Association="Self.FK_Subsidiaries_SubsidiariesType">
+            <End Role="SubsidiariesType" EntitySet="SubsidiariesTypes" />
+            <End Role="Subsidiaries" EntitySet="Subsidiaries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SubsidiariesModelStoreContainer" CdmEntityContainer="SubsidiariesEntities">
+          <EntitySetMapping Name="Associations">
+            <EntityTypeMapping TypeName="SubsidiariesModel.Association">
+              <MappingFragment StoreEntitySet="Association">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="AssocID" ColumnName="AssocID" />
+                <ScalarProperty Name="AssocType" ColumnName="AssocType" />
+                <ScalarProperty Name="AssPercent" ColumnName="AssPercent" />
+                <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="NoShares_YN" ColumnName="NoShares_YN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssociationTypes">
+            <EntityTypeMapping TypeName="SubsidiariesModel.AssociationType">
+              <MappingFragment StoreEntitySet="AssociationType">
+                <ScalarProperty Name="AssocType" ColumnName="AssocType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyNames">
+            <EntityTypeMapping TypeName="SubsidiariesModel.CompanyName">
+              <MappingFragment StoreEntitySet="CompanyName">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ExchangeCode" ColumnName="ExchangeCode" />
+                <ScalarProperty Name="CompanyName1" ColumnName="CompanyName" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="CorpInfo" ColumnName="CorpInfo" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="BusinessSectorID" ColumnName="BusinessSectorID" />
+                <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyTypes">
+            <EntityTypeMapping TypeName="SubsidiariesModel.CompanyType">
+              <MappingFragment StoreEntitySet="CompanyType">
+                <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+                <ScalarProperty Name="CompanyTypeDesc" ColumnName="CompanyTypeDesc" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exchanges">
+            <EntityTypeMapping TypeName="SubsidiariesModel.Exchange">
+              <MappingFragment StoreEntitySet="Exchange">
+                <ScalarProperty Name="ExchangeCode" ColumnName="ExchangeCode" />
+                <ScalarProperty Name="ExchangeName" ColumnName="ExchangeName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Investments">
+            <EntityTypeMapping TypeName="SubsidiariesModel.Investment">
+              <MappingFragment StoreEntitySet="Investment">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="InvestID" ColumnName="InvestID" />
+                <ScalarProperty Name="InvestType" ColumnName="InvestType" />
+                <ScalarProperty Name="InvPercent" ColumnName="InvPercent" />
+                <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="NoShares_YN" ColumnName="NoShares_YN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvestmentTypes">
+            <EntityTypeMapping TypeName="SubsidiariesModel.InvestmentType">
+              <MappingFragment StoreEntitySet="InvestmentType">
+                <ScalarProperty Name="InvestType" ColumnName="InvestType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subsidiaries">
+            <EntityTypeMapping TypeName="SubsidiariesModel.Subsidiary">
+              <MappingFragment StoreEntitySet="Subsidiaries">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="SubsiID" ColumnName="SubsiID" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="SubPercent" ColumnName="SubPercent" />
+                <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="NoShares_YN" ColumnName="NoShares_YN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubsidiariesTypes">
+            <EntityTypeMapping TypeName="SubsidiariesModel.SubsidiariesType">
+              <MappingFragment StoreEntitySet="SubsidiariesType">
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SubsidiariesModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

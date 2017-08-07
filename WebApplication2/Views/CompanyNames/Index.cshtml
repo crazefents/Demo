@@ -1,0 +1,91 @@
+﻿@model IEnumerable<WebApplication2.Models.CompanyName>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Exchange: @Html.DropDownList("ExchangeCode", "All")
+    </p>
+        <p>
+            Type of Company: @Html.DropDownList("CompanyTypeID", "All")
+            Search by: @Html.DropDownList("SearchBy", "All")
+        </p>
+            <p>
+                Enter Search: @Html.TextBox("SearchString") <br />
+                <input class="btn btn-default" type="submit" value="Filter" />
+            </p>
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorpInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessSectorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exchange.ExchangeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyType.CompanyTypeDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorpInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessSectorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exchange.ExchangeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyType.CompanyTypeDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyID })
+        </td>
+    </tr>
+}
+
+</table>
