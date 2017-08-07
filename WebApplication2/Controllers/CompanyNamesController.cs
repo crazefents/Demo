@@ -18,7 +18,7 @@ namespace WebApplication2.Controllers
         public ActionResult Index(string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
         {
 
-            string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
+           // string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
 
 
             var GenreLst = new List<string>();
