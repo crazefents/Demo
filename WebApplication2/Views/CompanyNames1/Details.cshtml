@@ -1,0 +1,82 @@
+﻿@model WebApplication2.Models.CompanyName
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CompanyName</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorpInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorpInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessSectorID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessSectorID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exchange.ExchangeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exchange.ExchangeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyType.CompanyTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyType.CompanyTypeDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

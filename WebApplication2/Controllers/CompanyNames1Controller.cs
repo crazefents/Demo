@@ -5,21 +5,22 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Mvc;
-using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    public class CompanyNamesController : Controller
+    public class CompanyNames1Controller : Controller
     {
         private SubsidiariesEntities db = new SubsidiariesEntities();
 
-        // GET: CompanyNames
-        public ActionResult Index(string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
+        // GET: CompanyNames1
+        public ActionResult Index(string CountryID,string BusinessSectorID,string CompanyName1, string fields,string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
         {
 
             // string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
-         
+
+            var field = new List<string>();
+                var allList = new object[] { "Company Names", "Country", "Business Sector" };
+            
 
             var GenreLst = new List<string>();
 
@@ -29,7 +30,7 @@ namespace WebApplication2.Controllers
 
             GenreLst.AddRange(GenreQry.Distinct());
             ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName");
-            ////////////////////////////////////////
+
 
             var TypLst = new List<string>();
 
@@ -40,21 +41,43 @@ namespace WebApplication2.Controllers
             TypLst.AddRange(TypQry.Distinct());
             ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc");
 
-            /////////////////////////////////////////
-            ViewBag.searchBy = new SelectList(db.CompanyNames, "searchby");
+
+            
+            ViewBag.fields = new SelectList(allList);
 
 
             var companyNames = from m in db.CompanyNames
                                select m;
 
-            /////////////////////////////////////
+
+           
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                companyNames = companyNames.Where(s => s.CompanyName1.Contains(searchString));
+                
+              
 
+                if (fields.Equals("Company Names"))
+                {
+                    companyNames = companyNames.Where(s => s.CompanyName1.Contains(searchString));
+
+                }
+                if (fields.Equals("Country"))
+                {
+                    companyNames = companyNames.Where(s => s.CountryID.Contains(searchString));
+
+                }
+
+
+                if (fields.Equals("Business Sector"))
+                {
+                    companyNames = companyNames.Where(s => s.BusinessSectorID.Contains(searchString));
+
+                }
 
             }
+
+        
 
 
             if (!string.IsNullOrEmpty(ExchangeCode))
@@ -70,7 +93,9 @@ namespace WebApplication2.Controllers
             return View(companyNames);
         }
 
-        // GET: CompanyNames/Details/5
+        
+
+        // GET: CompanyNames1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -85,7 +110,7 @@ namespace WebApplication2.Controllers
             return View(companyName);
         }
 
-        // GET: CompanyNames/Create
+        // GET: CompanyNames1/Create
         public ActionResult Create()
         {
             ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName");
@@ -93,7 +118,7 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        // POST: CompanyNames/Create
+        // POST: CompanyNames1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -112,7 +137,7 @@ namespace WebApplication2.Controllers
             return View(companyName);
         }
 
-        // GET: CompanyNames/Edit/5
+        // GET: CompanyNames1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -129,7 +154,7 @@ namespace WebApplication2.Controllers
             return View(companyName);
         }
 
-        // POST: CompanyNames/Edit/5
+        // POST: CompanyNames1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -147,7 +172,7 @@ namespace WebApplication2.Controllers
             return View(companyName);
         }
 
-        // GET: CompanyNames/Delete/5
+        // GET: CompanyNames1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -162,7 +187,7 @@ namespace WebApplication2.Controllers
             return View(companyName);
         }
 
-        // POST: CompanyNames/Delete/5
+        // POST: CompanyNames1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

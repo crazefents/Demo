@@ -160,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompanyNames1Controller.cs" />
     <Compile Include="Controllers\CompanyNamesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,6 +233,11 @@
     <Content Include="Views\CompanyNames\Edit.cshtml" />
     <Content Include="Views\CompanyNames\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\CompanyNames1\Create.cshtml" />
+    <Content Include="Views\CompanyNames1\Delete.cshtml" />
+    <Content Include="Views\CompanyNames1\Details.cshtml" />
+    <Content Include="Views\CompanyNames1\Edit.cshtml" />
+    <Content Include="Views\CompanyNames1\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

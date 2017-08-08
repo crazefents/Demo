@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication2.Models.CompanyName>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+
+@using (Html.BeginForm())
+{
+    <p>
+        Exchange: @Html.DropDownList("ExchangeCode","All")
+    </p>
+    <p>
+        Type of Company: @Html.DropDownList("CompanyTypeID", "All")
+       
+    </p>
+        <p>
+                
+                Search by :@Html.DropDownList("fields")
+            
+            Enter Search: @Html.TextBox("SearchString") <br />
+
+            <input class="btn btn-default" type="submit" value="Filter" />
+        </p>
+
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName1)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName1)
+        </td>
+        
+        <td>
+          
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyID })
+        </td>
+    </tr>
+}
+
+</table>
