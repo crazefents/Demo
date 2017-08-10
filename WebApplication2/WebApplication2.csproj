@@ -33,6 +33,19 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="SubsidiariesEntities-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=JNBTRAINING1-NB%3bInitial Catalog=Subsidiaries%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\SubsidiariesEntities-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -231,7 +244,7 @@
     <Content Include="Views\CompanyNames\Delete.cshtml" />
     <Content Include="Views\CompanyNames\Details.cshtml" />
     <Content Include="Views\CompanyNames\Edit.cshtml" />
-    <Content Include="Views\CompanyNames\Index.cshtml" />
+    <Content Include="Views\CompanyNames\Index2.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\CompanyNames1\Create.cshtml" />
     <Content Include="Views\CompanyNames1\Delete.cshtml" />
