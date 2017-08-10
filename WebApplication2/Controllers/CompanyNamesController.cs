@@ -15,7 +15,7 @@ namespace WebApplication2.Controllers
         private SubsidiariesEntities db = new SubsidiariesEntities();
 
         // GET: CompanyNames
-        public ActionResult Index(string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
+        public ActionResult Index2(string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
         {
 
             // string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
@@ -98,13 +98,13 @@ namespace WebApplication2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {
                 db.CompanyNames.Add(companyName);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index2");
             }
 
             ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName", companyName.ExchangeCode);
@@ -134,13 +134,13 @@ namespace WebApplication2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(companyName).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index2");
             }
             ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName", companyName.ExchangeCode);
             ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc", companyName.CompanyTypeID);
@@ -170,7 +170,7 @@ namespace WebApplication2.Controllers
             CompanyName companyName = db.CompanyNames.Find(id);
             db.CompanyNames.Remove(companyName);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index2");
         }
 
         protected override void Dispose(bool disposing)
