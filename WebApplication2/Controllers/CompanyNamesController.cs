@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,11 +17,13 @@ namespace WebApplication2.Controllers
         private SubsidiariesEntities db = new SubsidiariesEntities();
 
         // GET: CompanyNames
-        public ActionResult Index2(string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
+        public ActionResult Index2(string CompanyTypeID, string ExchangeCode, string searchString, string fields)
         {
 
             // string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
-         
+            //var field = new List<string>();
+            var allList = new object[] { "Company Names", "Country", "Business Sector" };
+            ViewBag.fields = new SelectList(allList);
 
             var GenreLst = new List<string>();
 
@@ -41,7 +45,7 @@ namespace WebApplication2.Controllers
             ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc");
 
             /////////////////////////////////////////
-            ViewBag.searchBy = new SelectList(db.CompanyNames, "searchby");
+           
 
 
             var companyNames = from m in db.CompanyNames
@@ -51,10 +55,31 @@ namespace WebApplication2.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                companyNames = companyNames.Where(s => s.CompanyName1.Contains(searchString));
 
+               
+
+
+
+                if (fields.Equals("Company Names"))
+                {
+                    companyNames = companyNames.Where(s => s.CompanyName1.Contains(searchString));
+
+                }
+                if (fields.Equals("Country"))
+                {
+                    companyNames = companyNames.Where(s => s.CountryID.Contains(searchString));
+
+                }
+
+
+                if (fields.Equals("Business Sector"))
+                {
+                    companyNames = companyNames.Where(s => s.BusinessSectorID.Contains(searchString));
+
+                }
 
             }
+
 
 
             if (!string.IsNullOrEmpty(ExchangeCode))
@@ -93,15 +118,17 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        // POST: CompanyNames/Create
+        // POST: CompanyNames1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+
+        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {
+                companyName.UpdateDate = DateTime.Now;
                 db.CompanyNames.Add(companyName);
                 db.SaveChanges();
                 return RedirectToAction("Index2");
@@ -134,21 +161,26 @@ namespace WebApplication2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(companyName).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index2");
-            }
-            ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName", companyName.ExchangeCode);
-            ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc", companyName.CompanyTypeID);
-            return View(companyName);
+                
+                    //db.Set<CompanyName>().AddOrUpdate(companyName);
+                    //db.SaveChanges();
+                    db.Entry(companyName).State = EntityState.Modified;
+                    db.SaveChanges();
+                
+            return RedirectToAction("Index2");
         }
+        ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName", companyName.ExchangeCode);
+        ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc", companyName.CompanyTypeID);
+            return View(companyName);
+    }
 
-        // GET: CompanyNames/Delete/5
-        public ActionResult Delete(int? id)
+
+    // GET: CompanyNames/Delete/5
+    public ActionResult Delete(int? id)
         {
             if (id == null)
             {
