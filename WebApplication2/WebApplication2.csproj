@@ -142,6 +142,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\ex.jfif" />
+    <Content Include="Content\images\one.png" />
+    <Content Include="Content\images\tree.png" />
+    <Content Include="Content\images\two.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -173,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\blacc.cs" />
     <Compile Include="Controllers\CompanyNames1Controller.cs" />
     <Compile Include="Controllers\CompanyNamesController.cs" />
     <Compile Include="Global.asax.cs">

@@ -14,6 +14,7 @@ namespace WebApplication2.Models
     
     public partial class CompanyName
     {
+       
         public int CompanyID { get; set; }
         public string ExchangeCode { get; set; }
         public string CompanyName1 { get; set; }

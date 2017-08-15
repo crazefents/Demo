@@ -57,9 +57,14 @@ html {
       -ms-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-}
+ body {
+    background-color: #428bca;
+    background: url(~/Content/images/tree.png) no-repeat center center fixed;
+  
+    background-size: cover;
+    margin: 0;
+    }
+
 
 a:focus {
   outline: thin dotted;
@@ -1406,10 +1411,11 @@ pre code {
 
 table {
   max-width: 100%;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 th {
+
   text-align: left;
 }
 
@@ -1998,23 +2004,23 @@ textarea.input-lg {
 }
 
 .btn {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.428571429;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-       -o-user-select: none;
-          user-select: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .btn:focus {

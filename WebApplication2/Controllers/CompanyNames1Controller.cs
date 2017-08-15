@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
             // string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
 
             var field = new List<string>();
-                var allList = new object[] { "Company Names", "Country", "Business Sector" };
+            var allList = new object[] { "Company Names", "Country", "Business Sector" };
             
 
             var GenreLst = new List<string>();
@@ -125,10 +125,12 @@ namespace WebApplication2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+       
+        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,DateTime.Now")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {
+                companyName.UpdateDate = DateTime.Now;
                 db.CompanyNames.Add(companyName);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -161,7 +163,7 @@ namespace WebApplication2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {

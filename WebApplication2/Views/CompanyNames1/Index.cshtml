@@ -2,55 +2,82 @@
 
 @{
     ViewBag.Title = "Index";
+
+
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-
+<div type="button" class="btn btn-danger">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+</div>
 @using (Html.BeginForm())
 {
-    <p>
-        Exchange: @Html.DropDownList("ExchangeCode","All")
-    </p>
-    <p>
-        Type of Company: @Html.DropDownList("CompanyTypeID", "All")
-       
-    </p>
-        <p>
-                
-                Search by :@Html.DropDownList("fields")
-            
-            Enter Search: @Html.TextBox("SearchString") <br />
 
-            <input class="btn btn-default" type="submit" value="Filter" />
-        </p>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p>
+                Exchange: @Html.DropDownList("ExchangeCode", "All")
+            </p>
+        </button>
+    </div>
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p>
+                Type of Company: @Html.DropDownList("CompanyTypeID", "All")
+
+            </p>
+        </button>
+    </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <p>
+                            Search by :@Html.DropDownList("fields")
+                        <p>
+                    </button>
+                </div>
+                        <p>
+                            Enter Search: @Html.TextBox("SearchString") <br />
+
+                            <input class="btn btn-primary" type="submit" value="Search" />
+                        </p>
 
 }
 
 
-<table class="table">
-    <tr>
+<table class="table table-bordered table-inverse">
+    <tr data-toggle="popover">
         <th>
             @Html.DisplayNameFor(model => model.CompanyName1)
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName1)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Home", "index") |
-            @Html.ActionLink("Details", "Details", new { id=item.CompanyID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyID })
-        </td>
-    </tr>
-}
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName1)
+            </td>
+
+            <td>
+                <a href="#" onclick="@("window.location.href='" + Url.Action("index2","CompanyNames" )+"'")">Home</a>
+
+                @Html.ActionLink("Details", "Details", new { id = item.CompanyID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
