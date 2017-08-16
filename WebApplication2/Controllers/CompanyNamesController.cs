@@ -56,10 +56,7 @@ namespace WebApplication2.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
 
-               
-
-
-
+ 
                 if (fields.Equals("Company Names"))
                 {
                     companyNames = companyNames.Where(s => s.CompanyName1.Contains(searchString));

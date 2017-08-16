@@ -18,7 +18,8 @@
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <p>
-                Exchange: @Html.DropDownList("ExchangeCode", "All")
+                @*@Html.DropDownList("ExchangeCode", "All")*@
+                Exchange: @Html.DropDownList("ExchangeCode", (SelectList)ViewBag.ExchangeCodeName, new { @class = "form-control" })
             </p>
         </button>
     </div>
@@ -28,6 +29,7 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <p>
                 Type of Company: @Html.DropDownList("CompanyTypeID", "All")
+
 
             </p>
         </button>

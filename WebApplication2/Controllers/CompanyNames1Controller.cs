@@ -15,32 +15,35 @@ namespace WebApplication2.Controllers
         private SubsidiariesEntities db = new SubsidiariesEntities();
 
         // GET: CompanyNames1
-        public ActionResult Index(string CountryID,string BusinessSectorID,string CompanyName1, string fields,string CompanyTypeID, string ExchangeCode, string searchString, string searchBy)
+        public ActionResult Index(string CountryID,string BusinessSectorID,string CompanyName1, string fields,string CompanyTypeID, string ExchangeCode, string searchString, string ExchangeCodeName)
         {
 
             // string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
 
-            var field = new List<string>();
+          //  var field = new List<string>();
             var allList = new object[] { "Company Names", "Country", "Business Sector" };
-            
+
+            var both = db.Exchanges.OrderBy(q => q.CountryID).ToDictionary(q => q.ExchangeName, q => q.ExchangeCode + " " + q.ExchangeName);
+            ViewBag.ExchangeCodeName = new SelectList(both, "Key", "Value");
+
 
             var GenreLst = new List<string>();
 
-            var GenreQry = from d in db.CompanyNames
-                           orderby d.ExchangeCode
-                           select d.ExchangeCode;
+            //var GenreQry = from d in db.CompanyNames
+            //               orderby d.ExchangeCode
+            //               select d.ExchangeCode;
 
-            GenreLst.AddRange(GenreQry.Distinct());
+         //   GenreLst.AddRange(GenreQry.Distinct());
             ViewBag.ExchangeCode = new SelectList(db.Exchanges, "ExchangeCode", "ExchangeName");
 
 
-            var TypLst = new List<string>();
+           // var TypLst = new List<string>();
 
-            var TypQry = from d in db.CompanyNames
-                         orderby d.CompanyTypeID
-                         select d.CompanyTypeID;
+            //var TypQry = from d in db.CompanyNames
+            //             orderby d.CompanyTypeID
+            //             select d.CompanyTypeID;
 
-            TypLst.AddRange(TypQry.Distinct());
+           // TypLst.AddRange(TypQry.Distinct());
             ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc");
 
 
