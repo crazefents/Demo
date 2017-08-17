@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AssociationsController.cs" />
     <Compile Include="Controllers\blacc.cs" />
     <Compile Include="Controllers\CompanyNames1Controller.cs" />
     <Compile Include="Controllers\CompanyNamesController.cs" />
@@ -256,6 +257,11 @@
     <Content Include="Views\CompanyNames1\Details.cshtml" />
     <Content Include="Views\CompanyNames1\Edit.cshtml" />
     <Content Include="Views\CompanyNames1\Index.cshtml" />
+    <Content Include="Views\Associations\Create.cshtml" />
+    <Content Include="Views\Associations\Delete.cshtml" />
+    <Content Include="Views\Associations\Details.cshtml" />
+    <Content Include="Views\Associations\Edit.cshtml" />
+    <Content Include="Views\Associations\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

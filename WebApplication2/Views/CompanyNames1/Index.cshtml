@@ -35,25 +35,34 @@
         </button>
     </div>
 
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <p>
-                            Search by :@Html.DropDownList("fields")
-                        <p>
-                    </button>
-                </div>
-                        <p>
-                            Enter Search: @Html.TextBox("SearchString") <br />
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p>
+                Search by :@Html.DropDownList("fields")
+            <p>
+        </button>
+    </div>
+    <p>
+        Enter Search: @Html.TextBox("SearchString") <br />
 
-                            <input class="btn btn-primary" type="submit" value="Search" />
-                        </p>
+        <input class="btn btn-primary" type="submit" value="Search" />
+    </p>
 
 }
+<div id="popover-content" style="display:none;">
+    <ul>
+        <li> Associations </li>
+        <li> Investments </li>
+        <li> Subsidiaries </li>
+    </ul>
+</div>
 
 
-<table class="table table-bordered table-inverse">
-    <tr data-toggle="popover">
-        <th>
+<table class="table table-striped table-hover"   >
+    <tr >
+       
+       
+        <th  >
             @Html.DisplayNameFor(model => model.CompanyName1)
         </th>
 
@@ -72,7 +81,7 @@
             </td>
 
             <td>
-                <a href="#" onclick="@("window.location.href='" + Url.Action("index2","CompanyNames" )+"'")">Home</a>
+                <a data-toggle="popover" title="Popover Header" data-placement="bottom">Group Holdings</a>
 
                 @Html.ActionLink("Details", "Details", new { id = item.CompanyID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CompanyID })
@@ -81,5 +90,4 @@
     }
 
 </table>
-
 

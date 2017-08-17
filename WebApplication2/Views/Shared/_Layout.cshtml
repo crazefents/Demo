@@ -8,6 +8,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
     <style>
         body {
@@ -15,6 +16,26 @@
             background-color: #cccccc;
         }
     </style>
+
+    <style type="text/css">
+        .table-hover tbody tr:hover td {
+            background-color: Blue;
+            color: red;
+        }
+
+        body {
+            margin: 50px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $("[data-toggle=popover]").popover({
+            html: true,
+            content: function () {
+                return $('#popover-content').html();
+            }
+        });
+    </script>
 </head>
 <body>
    

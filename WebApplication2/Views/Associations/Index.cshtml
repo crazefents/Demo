@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication2.Models.Association>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssPercent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectRel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChangeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoShares_YN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociationType.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssPercent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DirectRel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChangeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoShares_YN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociationType.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AssocID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AssocID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AssocID })
+        </td>
+    </tr>
+}
+
+</table>
