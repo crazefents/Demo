@@ -14,7 +14,12 @@ namespace WebApplication2.Models
     
     public partial class CompanyName
     {
-       
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CompanyName()
+        {
+            this.Associations = new HashSet<Association>();
+        }
+    
         public int CompanyID { get; set; }
         public string ExchangeCode { get; set; }
         public string CompanyName1 { get; set; }
@@ -25,7 +30,9 @@ namespace WebApplication2.Models
         public string CompanyTypeID { get; set; }
         public System.DateTime UpdateDate { get; set; }
     
-        public virtual Exchange Exchange { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Association> Associations { get; set; }
         public virtual CompanyType CompanyType { get; set; }
+        public virtual Exchange Exchange { get; set; }
     }
 }

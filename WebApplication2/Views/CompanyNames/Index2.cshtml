@@ -3,35 +3,13 @@
 @{
     ViewBag.Title = "Index2";
 }
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
 
-
-}
-<h2>Other Search</h2>
+<h2>Index2</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
-
-    @using (Html.BeginForm())
-    {
-    <p>
-        Exchange: @Html.DropDownList("ExchangeCode", "All")
-    </p>
-        <p>
-            Type of Company: @Html.DropDownList("CompanyTypeID", "All")
-            Search by :@Html.DropDownList("fields")
-
-
-        </p>
-            <p>
-                Enter Search: @Html.TextBox("SearchString") <br />
-                <input class="btn btn-default" type="submit" value="Filter" />
-            </p>
-    }
-
-
-<table class="table table-bordered table-inverse">
+</p>
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CompanyName1)
@@ -52,47 +30,46 @@
             @Html.DisplayNameFor(model => model.UpdateDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Exchange.ExchangeName)
+            @Html.DisplayNameFor(model => model.CompanyType.CompanyTypeDesc)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CompanyType.CompanyTypeDesc)
+            @Html.DisplayNameFor(model => model.Exchange.ExchangeName)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShortCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorpInfo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BusinessSectorID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Exchange.ExchangeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyType.CompanyTypeDesc)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CompanyID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CompanyID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorpInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessSectorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyType.CompanyTypeDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exchange.ExchangeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyID })
+        </td>
+    </tr>
+}
 
 </table>

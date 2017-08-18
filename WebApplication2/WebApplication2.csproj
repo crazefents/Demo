@@ -149,6 +149,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -159,10 +171,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -178,7 +186,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AssociationsController.cs" />
-    <Compile Include="Controllers\blacc.cs" />
     <Compile Include="Controllers\CompanyNames1Controller.cs" />
     <Compile Include="Controllers\CompanyNamesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,12 +206,6 @@
     <Compile Include="Models\Exchange.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Investment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InvestmentType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,12 +221,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\SubsidiariesType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Subsidiary.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -237,26 +232,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\CompanyNames\Create.cshtml" />
-    <Content Include="Views\CompanyNames\Delete.cshtml" />
-    <Content Include="Views\CompanyNames\Details.cshtml" />
-    <Content Include="Views\CompanyNames\Edit.cshtml" />
-    <Content Include="Views\CompanyNames\Index2.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\CompanyNames1\Create.cshtml" />
     <Content Include="Views\CompanyNames1\Delete.cshtml" />
     <Content Include="Views\CompanyNames1\Details.cshtml" />
     <Content Include="Views\CompanyNames1\Edit.cshtml" />
     <Content Include="Views\CompanyNames1\Index.cshtml" />
+    <Content Include="Views\CompanyNames\Create.cshtml" />
+    <Content Include="Views\CompanyNames\Delete.cshtml" />
+    <Content Include="Views\CompanyNames\Details.cshtml" />
+    <Content Include="Views\CompanyNames\Edit.cshtml" />
+    <Content Include="Views\CompanyNames\Index2.cshtml" />
     <Content Include="Views\Associations\Create.cshtml" />
     <Content Include="Views\Associations\Delete.cshtml" />
     <Content Include="Views\Associations\Details.cshtml" />

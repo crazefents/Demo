@@ -17,12 +17,12 @@ namespace WebApplication2.Controllers
         // GET: Associations
         public ActionResult Index()
         {
-            var associations = db.Associations.Include(a => a.AssociationType);
+            var associations = db.Associations.Include(a => a.CompanyName).Include(a => a.AssociationType);
             return View(associations.ToList());
         }
 
         // GET: Associations/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -39,6 +39,7 @@ namespace WebApplication2.Controllers
         // GET: Associations/Create
         public ActionResult Create()
         {
+            ViewBag.CompanyID = new SelectList(db.CompanyNames, "CompanyID", "CompanyName1");
             ViewBag.AssocType = new SelectList(db.AssociationTypes, "AssocType", "Description");
             return View();
         }
@@ -57,12 +58,13 @@ namespace WebApplication2.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CompanyID = new SelectList(db.CompanyNames, "CompanyID", "CompanyName1", association.CompanyID);
             ViewBag.AssocType = new SelectList(db.AssociationTypes, "AssocType", "Description", association.AssocType);
             return View(association);
         }
 
         // GET: Associations/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -73,6 +75,7 @@ namespace WebApplication2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CompanyID = new SelectList(db.CompanyNames, "CompanyID", "CompanyName1", association.CompanyID);
             ViewBag.AssocType = new SelectList(db.AssociationTypes, "AssocType", "Description", association.AssocType);
             return View(association);
         }
@@ -90,12 +93,13 @@ namespace WebApplication2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CompanyID = new SelectList(db.CompanyNames, "CompanyID", "CompanyName1", association.CompanyID);
             ViewBag.AssocType = new SelectList(db.AssociationTypes, "AssocType", "Description", association.AssocType);
             return View(association);
         }
 
         // GET: Associations/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -112,7 +116,7 @@ namespace WebApplication2.Controllers
         // POST: Associations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Association association = db.Associations.Find(id);
             db.Associations.Remove(association);

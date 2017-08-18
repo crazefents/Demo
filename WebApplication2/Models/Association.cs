@@ -15,7 +15,7 @@ namespace WebApplication2.Models
     public partial class Association
     {
         public int CompanyID { get; set; }
-        public string AssocID { get; set; }
+        public int AssocID { get; set; }
         public string AssocType { get; set; }
         public int AssPercent { get; set; }
         public string DirectRel { get; set; }
@@ -23,6 +23,7 @@ namespace WebApplication2.Models
         public System.DateTime ChangeDate { get; set; }
         public int NoShares_YN { get; set; }
     
+        public virtual CompanyName CompanyName { get; set; }
         public virtual AssociationType AssociationType { get; set; }
     }
 }

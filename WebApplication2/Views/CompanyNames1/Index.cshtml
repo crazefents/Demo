@@ -51,7 +51,8 @@
 }
 <div id="popover-content" style="display:none;">
     <ul>
-        <li> Associations </li>
+        <li>
+        <li><a class="active" data-toggle="tab" onclick="@("window.location.href='" + Url.Action("Index", "Associations") + "'")">Associations</></a></li>
         <li> Investments </li>
         <li> Subsidiaries </li>
     </ul>
@@ -85,6 +86,7 @@
 
                 @Html.ActionLink("Details", "Details", new { id = item.CompanyID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CompanyID })
+               
             </td>
         </tr>
     }

@@ -4,22 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3e1920b177014f7db4db9709909d5587" Name="Diagram1">
-        <EntityTypeShape EntityType="SubsidiariesModel.Association" Width="1.5" PointX="10" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.AssociationType" Width="1.5" PointX="7.75" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="52da0f842201404b8fedd9b92754e714" Name="Diagram1">
+        <EntityTypeShape EntityType="SubsidiariesModel.Association" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.AssociationType" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SubsidiariesModel.CompanyName" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.CompanyType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.Exchange" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.Investment" Width="1.5" PointX="5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.InvestmentType" Width="1.5" PointX="2.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.Subsidiary" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.SubsidiariesType" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.sysdiagram" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.CompanyType" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.Exchange" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="SubsidiariesModel.FK_Association_CompanyName" ManuallyRouted="false" />
         <AssociationConnector Association="SubsidiariesModel.FK_AssociationType" ManuallyRouted="false" />
-        <AssociationConnector Association="SubsidiariesModel.FK_CompanyName_CompanyName" ManuallyRouted="false" />
-        <AssociationConnector Association="SubsidiariesModel.FK_CompanyName_CompanyName1" ManuallyRouted="false" />
-        <AssociationConnector Association="SubsidiariesModel.FK_Investment_InvestmentType" ManuallyRouted="false" />
-        <AssociationConnector Association="SubsidiariesModel.FK_Subsidiaries_SubsidiariesType" ManuallyRouted="false" />
+        <AssociationConnector Association="SubsidiariesModel.FK_CompanyName_CompanyType" ManuallyRouted="false" />
+        <AssociationConnector Association="SubsidiariesModel.FK_CompanyName_Exchange" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

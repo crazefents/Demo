@@ -30,10 +30,6 @@ namespace WebApplication2.Models
         public virtual DbSet<CompanyName> CompanyNames { get; set; }
         public virtual DbSet<CompanyType> CompanyTypes { get; set; }
         public virtual DbSet<Exchange> Exchanges { get; set; }
-        public virtual DbSet<Investment> Investments { get; set; }
-        public virtual DbSet<InvestmentType> InvestmentTypes { get; set; }
-        public virtual DbSet<Subsidiary> Subsidiaries { get; set; }
-        public virtual DbSet<SubsidiariesType> SubsidiariesTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
